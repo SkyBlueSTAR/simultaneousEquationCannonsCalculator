@@ -320,7 +320,10 @@ function calculateEquation(){
         for(let m = 1; m<8; m++){
             //相手カードクラスがついていない場合continue
             if(!document.getElementById('monster_'+m).classList.contains('opposite'))continue;
-            //card4クラス(相手リンク)の場合continue
+            //noneクラス(カードが存在しない)の場合continue
+            if(document.getElementById('monster_'+m).classList.contains('none'))continue;
+            //card2・card4クラス(相手リンク)の場合continue
+            if(document.getElementById('monster_'+m).classList.contains('card2'))continue;
             if(document.getElementById('monster_'+m).classList.contains('card4'))continue;
             //その位置のモンスターのレベルがx+yで表せる場合resultPatternとしてx,y,x2,y2,mを保存
             for(const x2 of banishedXyz){
