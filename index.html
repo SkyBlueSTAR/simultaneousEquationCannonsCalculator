@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>連慄砲固定式計算ツール</title>
+</head>
+<header>
+    <h1>連慄砲固定式計算ツール</h1>
+    <p>EXデッキ・盤面を再現することで連慄砲固定式の除外効果を成立させる方法を算出します</p>
+</header>
+<body>
+    <table>
+        <tr>
+            <td colspan="3">
+                <table class="field">
+                    <tr>
+                        <th id="opposite_hand" colspan="7">
+                            <p>相手の手札の枚数<br>
+                                <input type="number" id="opposite_hand_num" min="0" max="60" value="5">
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="emptyArea"></td>
+                        <td class="cardArea magicTrap none opposite"></td>
+                        <td class="cardArea magicTrap none opposite"></td>
+                        <td class="cardArea magicTrap none opposite"></td>
+                        <td class="cardArea magicTrap none opposite"></td>
+                        <td class="cardArea magicTrap none opposite"></td>
+                        <td class="emptyArea"></td>
+                    </tr>
+                    <tr>
+                        <td class="emptyArea"><p style="color: #FFF5B5; margin:0px">lv/rank</p></td>
+                        <td id="monster_1" class="cardArea monster none opposite"><p id="lv1" style="margin: 0px;"></p></td>
+                        <td id="monster_2" class="cardArea monster none opposite"><p id="lv2" style="margin: 0px;"></p></td>
+                        <td id="monster_3" class="cardArea monster none opposite"><p id="lv3" style="margin: 0px;"></p></td>
+                        <td id="monster_4" class="cardArea monster none opposite"><p id="lv4" style="margin: 0px;"></p></td>
+                        <td id="monster_5" class="cardArea monster none opposite"><p id="lv5" style="margin: 0px;"></p></td>
+                        <td class="cardArea magicTrap none opposite"></td>
+                    </tr>
+                    <tr>
+                        <td class="emptyArea"><p style="color: #FFF5B5; margin:0px">lv/rank</p></td>
+                        <td class="emptyArea"></td>
+                        <td id="monster_6" class="cardArea monster none both"><p id="lv6" style="margin: 0px;"></p></td>
+                        <td class="emptyArea"></td>
+                        <td id="monster_7" class="cardArea monster none both"><p id="lv7" style="margin: 0px;"></p></td>
+                        <td class="emptyArea"></td>
+                        <td class="emptyArea"></td>
+                    </tr>
+                    <tr>
+                        <td class="cardArea magicTrap none mine"></td>
+                        <td id="monster_8" class="cardArea monster none mine"></td>
+                        <td id="monster_9" class="cardArea monster none mine"></td>
+                        <td id="monster_10" class="cardArea monster none mine"></td>
+                        <td id="monster_11" class="cardArea monster none mine"></td>
+                        <td id="monster_12" class="cardArea monster none mine"></td>
+                        <td class="emptyArea"></td>
+                    </tr>
+                    <tr>
+                        <td class="emptyArea"></td>
+                        <td class="cardArea magicTrap none mine"></td>
+                        <td class="cardArea magicTrap none mine"></td>
+                        <td class="cardArea magicTrap none mine"></td>
+                        <td class="cardArea magicTrap none mine"></td>
+                        <td class="cardArea magicTrap none mine"></td>
+                        <td class="emptyArea"></td>
+                    </tr>
+                    <tr>
+                        <th id="my_hand" colspan="7">
+                            <p>自分の手札の枚数<br>
+                                <input type="number" id="my_hand_num" min="0" max="60" value="5">
+                            </p>
+                        </th>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td colspan="2" class="ex_settings">
+                            <h3>エクシーズモンスター</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ex_settings">
+                            <p id="px1">☆01:<input type="number" id="x1" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px2">☆02:<input type="number" id="x2" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px3">☆03:<input type="number" id="x3" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px4">☆04:<input type="number" id="x4" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px5">☆05:<input type="number" id="x5" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px6">☆06:<input type="number" id="x6" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px7">☆07:<input type="number" id="x7" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px8">☆08:<input type="number" id="x8" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px9">☆09:<input type="number" id="x9" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px10">☆10:<input type="number" id="x10" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px11">☆11:<input type="number" id="x11" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px12">☆12:<input type="number" id="x12" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="px13">☆13:<input type="number" id="x13" class="card_amount" min="0" max="15" value="0"></p>
+                        </td>
+                        <td class="ex_settings">
+                            <p id="px1b">うち除外状態:<input type="number" id="x1b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px2b">うち除外状態:<input type="number" id="x2b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px3b">うち除外状態:<input type="number" id="x3b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px4b">うち除外状態:<input type="number" id="x4b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px5b">うち除外状態:<input type="number" id="x5b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px6b">うち除外状態:<input type="number" id="x6b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px7b">うち除外状態:<input type="number" id="x7b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px8b">うち除外状態:<input type="number" id="x8b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px9b">うち除外状態:<input type="number" id="x9b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px10b">うち除外状態:<input type="number" id="x10b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px11b">うち除外状態:<input type="number" id="x11b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px12b">うち除外状態:<input type="number" id="x12b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="px13b">うち除外状態:<input type="number" id="x13b" class="card_amount_b" min="0" max="0" value="0"></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td colspan="2" class="ex_settings">
+                            <h3>融合モンスター</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ex_settings">
+                            <p id="py1">☆01:<input type="number" id="y1" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py2">☆02:<input type="number" id="y2" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py3">☆03:<input type="number" id="y3" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py4">☆04:<input type="number" id="y4" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py5">☆05:<input type="number" id="y5" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py6">☆06:<input type="number" id="y6" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py7">☆07:<input type="number" id="y7" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py8">☆08:<input type="number" id="y8" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py9">☆09:<input type="number" id="y9" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py10">☆10:<input type="number" id="y10" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py11">☆11:<input type="number" id="y11" class="card_amount" min="0" max="15" value="0"></p>
+                            <p id="py12">☆12:<input type="number" id="y12" class="card_amount" min="0" max="15" value="0"></p>
+                        </td>
+                        <td class="ex_settings">
+                            <p id="py1b">うち除外状態:<input type="number" id="y1b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py2b">うち除外状態:<input type="number" id="y2b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py3b">うち除外状態:<input type="number" id="y3b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py4b">うち除外状態:<input type="number" id="y4b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py5b">うち除外状態:<input type="number" id="y5b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py6b">うち除外状態:<input type="number" id="y6b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py7b">うち除外状態:<input type="number" id="y7b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py8b">うち除外状態:<input type="number" id="y8b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py9b">うち除外状態:<input type="number" id="y9b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py10b">うち除外状態:<input type="number" id="y10b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py11b">うち除外状態:<input type="number" id="y11b" class="card_amount_b" min="0" max="0" value="0"></p>
+                            <p id="py12b">うち除外状態:<input type="number" id="y12b" class="card_amount_b" min="0" max="0" value="0"></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="result">
+                <input type="button" value="<前" style="margin: 16px;" id="before">
+            </td>
+            <td class="result">
+                <p id="result">パターン0/0</p>
+            </td>
+            <td class="result">
+                <input type="button" value="次>" style="margin: 16px;" id="next">
+            </td>
+        </tr>
+    </table>
+    <div id="contextmenu">
+        <p>レベル/ランク<br>
+            <input type="number" id="level" min="1" max="13" value="4">
+        </p>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>

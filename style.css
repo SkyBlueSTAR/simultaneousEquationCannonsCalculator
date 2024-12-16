@@ -1,0 +1,51 @@
+#contextmenu{
+    display:none;
+    position:fixed;
+    left:0px;
+    top:0px;
+    width:200px;
+    height:100px;
+    border:1px solid #000;
+    background-color:#fff;
+}
+
+.opposite_hand{
+    width: 100%;
+    height: 120px;
+}
+
+.field{
+    background-color: #FFF5B5;
+    border: 1px solid #000;
+}
+
+td{
+    border: 1px solid #000;
+    vertical-align: top;
+}
+
+.result{
+    border: 0px;
+    vertical-align: bottom;
+}
+
+.ex_settings{
+    border: 0px;
+    white-space: nowrap;
+}
+
+.for_banish{
+    border: 2px solid red;
+    background-color: #FFF595;
+}
+
+.for_bounce{
+    border: 2px solid blue;
+    background-color: #FFF595;
+}
+
+.for_select{
+    border: 2px solid magenta;
+    background-color: #FFF595;
+    padding: 0px;
+}
