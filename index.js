@@ -73,6 +73,21 @@ window.onload = ()=>{
         const result = calculateEquation();
         if(result.length==0){
             document.getElementById('result').textContent = 'パターン0/0';
+            let temp = [];
+            for(const t of document.getElementsByClassName('for_banish')){
+                temp.push(t);
+            }
+            temp.forEach(v=>v.classList.remove('for_banish'));
+            temp = [];
+            for(const t of document.getElementsByClassName('for_bounce')){
+                temp.push(t);
+            }
+            temp.forEach(v=>v.classList.remove('for_bounce'));
+            temp = [];
+            for(const t of document.getElementsByClassName('for_select')){
+                temp.push(t);
+            }
+            temp.forEach(v=>v.classList.remove('for_select'));
         }else{
             if(showingPattern > result.length)showingPattern = result.length;
             if(showingPattern < 1)showingPattern = 1;
